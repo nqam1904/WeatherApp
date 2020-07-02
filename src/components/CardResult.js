@@ -10,7 +10,7 @@ const CardResult = (props) => {
                 <Card.Body>
                     <Card.Title>{props.name}</Card.Title>
                     <Card.Text>
-                        {props.temperature} độ, <span style={{ marginLeft: '20px' }}>độ ẩm:{props.humidity}</span> <span style={{ marginLeft: '20px' }}>,{props.weather_descriptions}</span>
+                        {props.temperature} độ, <span style={{ marginLeft: '20px' }}>độ ẩm:{props.humidity}</span> <span style={{ marginLeft: '20px' }}>{props.weather_descriptions}</span>
                     </Card.Text>
                 </Card.Body>
             </Card>

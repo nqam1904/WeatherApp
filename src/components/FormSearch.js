@@ -1,6 +1,8 @@
 import React from 'react';
 import { Form, Col, Button, Row } from 'react-bootstrap';
 const FormSearch = (props) => {
+
+
     return (
         <Form onSubmit={props.loadweather}>
             <Row>
