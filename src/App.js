@@ -54,25 +54,25 @@ class App extends Component {
         const api_call = await fetch(`http://api.weatherstack.com/current?access_key=8a35c848dd7c818c2b72ebf4b80837eb&query=${name}`);
         const res = await api_call.json();// trả dữ liệu api về
         if (res.success === undefined) {
-          localStorage.setItem(`weatherApp`, JSON.stringify([res]));
-          this.functionIf(name, res);
-          this.setState((state) => {
-            state.history.push(res);
-            state.isShowCard = true;
-          });
+          if (!history) {
+            localStorage.setItem(`weatherApp`, JSON.stringify([res]));
+            this.functionIf(name, res);
+            this.setState((state) => {
+              state.history.push(res);
+              state.isShowCard = true;
+            });
+          } else {
+            await history.push(res);
+            localStorage.setItem(`weatherApp`, JSON.stringify(history));
+            this.functionIf(name, res);
+            this.setState((state) => {
+              state.history.push(res);
+              state.isShowCard = true;
+            });
+          }
         } else {
-          await history.push(res);
-          localStorage.setItem(`weatherApp`, JSON.stringify(history));
-          this.functionIf(name, res);
-          this.setState((state) => {
-            state.history.push(res);
-            state.isShowCard = true;
-          });
-        }else {
           toast.error(`Không tìm thấy thành phố này`);
         }
-
-
       } finally {
         this.setState({
           isLoading: !this.state.isLoading,
